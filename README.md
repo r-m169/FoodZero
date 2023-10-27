@@ -10,7 +10,6 @@ Magic Pan is a web application that allows users to choose their meals .
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 
-
 ## Introduction
 
 Magic Pan is a simple web application designed to demonstrate user registration and login functionality. Users can create an account by providing their name, email, and password. Once registered, they can order their meals.
@@ -39,10 +38,13 @@ Before you start, ensure you have the following software and tools installed:
    ```bash
    git clone https://github.com/r-m169/Magic-Pan.git
 
+   ```
+
 2. Navigate to the project directory:
 
 ```bash
-cd Magic-Pan
+ cd Magic-Pan
+ ```
 
 3. Open the project in your code editor.
 
