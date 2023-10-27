@@ -1,28 +1,61 @@
-// document.getElementById('signupForm').addEventListener('submit', function (event) {
-//     event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+    const signUpForm = document.getElementById('sign-up-form');
+    const nameInput = document.getElementById('name-input');
+    const emailInput = document.getElementById('email-input');
+    const passwordInput = document.getElementById('password-input');
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
 
-//     const username = document.querySelector('input[name="username"]').value;
-//     const password = document.querySelector('input[name="password"]').value;
-//     const email = document.querySelector('input[name="email"]').value;
+    signUpForm.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-//     const requestData = {
-//         username: username,
-//         password: password,
-//         email: email
-//     };
+        emailError.textContent = "";
+        passwordError.textContent = "";
+        validationMessage.textContent = "";
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        // const name = nameInput.value.trim();
 
-//     fetch('https://dummyjson.com/auth/login', {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(requestData)
-//     })
-//     .then(res => {
-//         if (!res.ok) {
-//             throw new Error('Network response was not ok');
-//         }
-//         return res.json();
-//     })
-//     .then(data => console.log(data))
-//     .catch(error => console.error('Error:', error.message)); 
-// });
+        if (!isValidEmail(email)) {
+            emailError.textContent = "Email is not valid";
+            emailError.style.color = "red";
+            return;
+        }
 
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        if (!isValidPassword(password)) {
+            passwordError.textContent = "Password is not valid";
+            passwordError.style.color = "red";
+            return; 
+        }
+
+        function isValidPassword(password) {
+            return password.length >= 6 && !password.includes(" ") && /[A-Z]/.test(password);
+        }
+
+        const storedEmail = localStorage.getItem('email');
+        if (storedEmail) {
+            validationMessage.textContent = "Data already exists";
+            validationMessage.style.color = "red";
+            return;
+        }
+
+        const emailValue = emailInput.value;
+        const passwordValue = passwordInput.value;
+        const nameValue = nameInput.value;
+        localStorage.setItem('name', nameValue);
+        localStorage.setItem('email', emailValue);
+        localStorage.setItem('password', passwordValue);
+        window.location.href = "login.html";
+    });
+});
+// localStorage.removeItem('email')
+// if (!localStorage.getItem('email')) {
+//     console.log('Email removed from localStorage'); 
+// } else {
+//     console.log('Email still exists in localStorage');  
+// }

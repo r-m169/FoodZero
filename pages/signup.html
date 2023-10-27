@@ -15,64 +15,39 @@
         <input type="checkbox" id="flip">
         <div class="cover">
             <div class="front">
-                <img src="../assets/images/bowl.avif" alt="">
-                <div class="text">
-                    <!-- <span class="text-1">Every new friend is a <br> new adventure</span> -->
-                    <!-- <span class="text-2">Let's get connected</span> -->
-                </div>
-            </div>
-            <div class="back">
-                <img class="backImg" src="../assets/images/pasta.avif" alt="">
-                <div class="text">
-                    <!-- <span class="text-1">Complete miles of journey <br> with one step</span> -->
-                    <!-- <span class="text-2">Let's get started</span> -->
-                </div>
+                <img src="../assets/images/pasta.avif" alt="">
             </div>
         </div>
         <div class="forms">
             <div class="form-content">
-                <div class="login-form">
-                    <div class="title">Login</div>
-                    <form action="#">
-                        <div class="input-boxes">
-                            <div class="input-box">
-                                <i class="fas fa-envelope"></i>
-                                <input type="text" placeholder="Enter your email" required>
-                            </div>
-                            <div class="input-box">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" placeholder="Enter your password" required>
-                            </div>
-                            <div class="text"><a href="#">Forgot password?</a></div>
-                            <div class="button input-box">
-                                <input type="submit" value="Sumbit">
-                            </div>
-                            <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label>
-                            </div>
-                        </div>
-                    </form>
-                </div>
                 <div class="signup-form">
                     <div class="title">Signup</div>
-                    <form action="#">
+                    <form action="#" id="sign-up-form">
                         <div class="input-boxes">
                             <div class="input-box">
                                 <i class="fas fa-user"></i>
-                                <input type="text" placeholder="Enter your name" required>
+                                <input type="text" placeholder="Enter your name" id="name-input" required>
                             </div>
                             <div class="input-box">
                                 <i class="fas fa-envelope"></i>
-                                <input type="text" placeholder="Enter your email" required>
+                                <input type="text" placeholder="Enter your email" id="email-input" required>
+                                <div id="emailError" class="error-message"></div>
+
                             </div>
                             <div class="input-box">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" placeholder="Enter your password" required>
+                                <input type="password" placeholder="Enter your password" id="password-input" required>
+                                <div id="passwordError" class="error-message"></div>
+
                             </div>
                             <div class="button input-box">
                                 <input type="submit" value="Sumbit">
                             </div>
-                            <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label>
-                            </div>
+                            <div id="validationMessage" class="success-message"></div>
+
+                            <a class="text sign-up-text" href="./login.html">Already have an account? <label
+                                    for="">Login now</label>
+                            </a>
                         </div>
                     </form>
                 </div>
