@@ -79,6 +79,18 @@
     border-top-right-radius: 0;
     transition: 0.5s;
 }
+.getStarted{
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 40px;
+    color: var(--white);
+    /* background-image: linear-gradient(45deg,var(--brown)); */
+    background-color: var(--brown);
+    border: none;
+    border-radius: 30px;
+    /* border-top-right-radius: 0; */
+    transition: 0.5s;
+}
 
 .content {
     margin-top: 7%;
@@ -112,7 +124,8 @@
 .btn:hover {
     border-top-right-radius: 30px;
     color: var(--bg-white);
-    background-image: linear-gradient(45deg, var(--brown), var(--bg-white));
+    background-color: var(--bg);
+    /* background-image: linear-gradient(45deg, var(--brown), var(--bg-white)); */
 
 }
 
