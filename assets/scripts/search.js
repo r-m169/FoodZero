@@ -18,7 +18,8 @@ function getMealList() {
               </div>
               <div class="meal-name">
                 <h3>${meal.strMeal}</h3>
-                <a href="#" class="recipe-btn">ADD TO CART</a>
+                <a href="./meal/?id=${meal.idMeal}" class="recipe-btn">VIEW DETAILS</a>
+
               </div>
             </div>
           `;
@@ -32,3 +33,4 @@ function getMealList() {
       mealList.innerHTML = html;
     });
 }
+
