@@ -18,6 +18,7 @@ Magic Pan is a simple web application designed to demonstrate user registration 
 
 - User registration with name, email, and password.
 - User login with email and password.
+- Search for your meal 
 
 ## Getting Started
 
