@@ -1,13 +1,16 @@
+<!-- Create a cart.html file with the following structure -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../assets/lib/bootstrap.min.css" />
-    <link rel="stylesheet" href="../assets/styles/meal.css" />
+
+    <link rel="stylesheet" href="../assets/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/styles/order.css">
     <link rel="stylesheet" href="../assets/styles/style.css"> 
-    <title>Magic Pan</title>
+
+    <title>Your Cart</title>
 </head>
 <body>
     <div class="home-page">
@@ -73,26 +76,11 @@
           </div>
         </nav>
       </div>
-      <div class="meals-details container-fluid d-flex  justify-content-center align-items-center d-none">
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0 ">
-          <div class="col-md-4">
-            <img src="" class="img-fluid rounded-start meal-pic" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title" id="meal-title"></h5>
-                <p class="card-text strCategory" id="meal-category"></p>
-                <h6 class="price">$10</h6>
-                <!-- Add this button to your meal details page -->
-              <button class="add-to-cart" onclick="addToCart()">ADD TO YOUR ORDER</button>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-      <script src="../assets/lib/bootstrap.min.js"></script>
-    <script src="../assets/scripts/meal.js"></script>
-    
+      
+    <ul id="cart-items"></ul>
+    <button id="checkout-button" class="btn btn-primary">Checkout</button>
+    <button id="clear-cart-button" class="btn btn-danger">Clear Cart</button>
+    <script src="../assets/lib/bootstrap.min.js"></script>
+    <script src="../assets/scripts/order.js"></script>
+</body>
 </html>

@@ -8,7 +8,7 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
     var storedPassword = localStorage.getItem('password');
 
     if (email === storedEmail && password === storedPassword) {
-        window.location.href = '../index.html';
+        window.location.href = '../pages/search.html';
         // alert("success")
     } else {
         var validationMessage = document.getElementById('validationMessage');

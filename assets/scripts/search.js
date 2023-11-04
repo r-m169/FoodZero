@@ -34,3 +34,9 @@ function getMealList() {
     });
 }
 
+const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+
+    // Update the order badge count
+    const orderBadge = document.getElementById("order-badge");
+    orderBadge.textContent = cartItems.length;
