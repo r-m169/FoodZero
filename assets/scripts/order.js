@@ -29,9 +29,7 @@ const displayCartItems = () => {
                             </div>
                         </div>
                     </div>
-                    
                 </div>
-                
             `;
             cartList.appendChild(cartItemDiv);
         });
@@ -60,7 +58,7 @@ const decreaseQuantity = (itemId) => {
         quantityElement.textContent = quantity;
 
         const priceElement = document.getElementById(`cart-item-${itemId}`).querySelector(".price");
-        const price = 10; // Replace with the actual price of the item
+        const price = 10; 
         const totalPrice = price * quantity;
         priceElement.textContent = `$${totalPrice}`;
     } else {
@@ -76,6 +74,7 @@ const removeItem = (itemId) => {
     const cartItem = document.getElementById(`cart-item-${itemId}`);
     if (cartItem) {
         cartItem.remove();
+        localStorage.removeItem('cart')
     }
 
     const orderBadge = document.getElementById("order-badge");
@@ -108,21 +107,17 @@ const addToCart = async () => {
 
     displayCartItems();
 };
-
 const checkout = () => {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-
+   
     clearCart();
 
     alert("Checkout successful!");
 };
 
-
 const clearCart = () => {
-    
     localStorage.removeItem("cart");
 
- 
     const cartList = document.getElementById("cart-items");
     cartList.innerHTML = "Your cart is empty.";
 
