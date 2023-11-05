@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitter:wght@100&family=Cairo&family=Dancing+Script&family=Exo+2&family=Fraunces:opsz,wght@9..144,700&family=Gemunu+Libre:wght@200&family=Glory:wght@200&family=Montserrat:ital,wght@0,200;0,400;0,700;1,100&family=PT+Serif:ital,wght@0,400;0,700;1,700&family=Poppins:wght@300;400&family=Roboto+Mono:wght@100;300&family=Rubik&family=Rufina&family=Ruwudu&family=Space+Mono&family=Victor+Mono:wght@100;500&display=swap');
+
+:root {
+    --brown: #DF2E38;
+    --bg: #5D9C59;
+    --bg-light: #C7E8CA;
+    --bg-white: #DDF7E3;
+    --white: white;
+}
+.btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.checkoutBtn , .clearBtn{
+    padding: 10px 40px;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--brown);
+    color: var(--white);
+}
+.checkoutBtn{
+    background-color: var(--bg);
+}
+
+.checkoutBtn:hover , .clearBtn:hover{
+    background-color: var(--bg-white);
+    color: var(--brown);
+}
+.card {
+    width: 50%;
+    margin-bottom: 20px;
+    border:none;
+    border-radius: 5px;
+    display: flex;
+}
+
+.image {
+    padding: 10px;
+}
+
+.image img {
+    max-width: 200px;
+    height: auto;
+}
+
+.card-body {
+    padding: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: var(--brown);
+}
+
+.card-text {
+    color: var(--bg);
+    font-size: 0.9rem;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--brown);
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+}
+
+.quantity button {
+    background: #f0f0f0;
+    border: none;
+    color: var(--white);
+    padding: 5px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: var(--brown);
+    border-radius: 10px;
+
+}
+
+.quantity button:hover {
+    background: var(--bg);
+}
+
+.quantity span {
+    padding: 0 10px;
+    font-size: 1rem;
+}
+
+.delete{
+    color: #d9534f;
+    border-color: #d9534f;
+    background-color: #fff;
+    font-weight: bold;
+    width: 150px;
+    border-radius: 12px;
+}
+
+.delete:hover {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+/* You can adjust the styles as needed to match your design preferences. */
+@media screen {
+    .card {
+        width: 80%;
+        
+    }
+}

@@ -48,7 +48,7 @@ h2{
 .meal-wrapper{
     max-width: 1280px;
     margin: 0 auto;
-    padding: 2rem;
+    /* padding: 2rem; */
     background: #fff;
     text-align: center;
 }
@@ -164,6 +164,43 @@ h2{
     overflow-y: scroll;
     display: none;
     padding: 2rem 0;
+}
+.filter-btn{
+    border: none;
+    border: 1px solid var(--brown);
+    color: var(--brown);
+    background-color: var(--white);
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 7px;
+    /* gap: 10px; */
+}
+.filter-btn:hover{
+    background-color: var(--brown);
+    color: var(--white);
+    border: none;
+}
+#filters{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+}
+.add{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.cart-icon{
+    color: var(--white);
+    background-color: var(--brown);
+    border-radius: 12px;
+    width: 50px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 @media screen and (min-width: 600px){
     .meal-search-box{

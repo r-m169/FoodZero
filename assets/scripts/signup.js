@@ -3,8 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const nameInput = document.getElementById('name-input');
     const emailInput = document.getElementById('email-input');
     const passwordInput = document.getElementById('password-input');
+    const phone_input = document.getElementById('phone-input');
     const emailError = document.getElementById("emailError");
     const passwordError = document.getElementById("passwordError");
+
 
     signUpForm.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -47,9 +49,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const emailValue = emailInput.value;
         const passwordValue = passwordInput.value;
         const nameValue = nameInput.value;
+        const phoneNumberValue = phone_input.value
         localStorage.setItem('name', nameValue);
         localStorage.setItem('email', emailValue);
         localStorage.setItem('password', passwordValue);
+        localStorage.setItem('phone_number', phoneNumberValue);
         window.location.href = "login.html";
     });
 });

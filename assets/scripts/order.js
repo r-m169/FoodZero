@@ -1,43 +1,54 @@
 const displayCartItems = () => {
     const cartItems = JSON.parse(localStorage.getItem("cart"));
     const cartList = document.getElementById("cart-items");
+    let totalPrice = 0;
 
     if (cartItems && cartItems.length > 0) {
-        cartList.innerHTML = "";
-
-        cartItems.forEach(item => {
-            const cartItemDiv = document.createElement("div");
-            cartItemDiv.id = `cart-item-${item.idMeal}`;
-            cartItemDiv.classList.add("meals-details", "container-fluid", "d-flex", "justify-content-center", "align-items-center");
-            cartItemDiv.innerHTML = `
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="${item.strMealThumb}" class="img-fluid rounded-start meal-pic" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title" id="meal-title">${item.strMeal}</h5>
-                                <p class="card-text strCategory" id="meal-category">${item.strCategory}</p>
-                                <p class="card-text price" id="meal-price">$10</p>
-                                <div class="quantity">
-                                <button class="btn btn-sm btn-outline-secondary" onclick="decreaseQuantity(${item.idMeal})">-</button>
+      cartList.innerHTML = "";
+  
+      cartItems.forEach(item => {
+        const existingCard = document.getElementById(`cart-item-${item.idMeal}`);
+  
+        if (existingCard) {
+          const quantityElement = existingCard.querySelector(`#quantity-${item.idMeal}`);
+          quantityElement.textContent = parseInt(item.quantity); // Parse quantity as an integer
+        } else {
+          const cartItemDiv = document.createElement("div");
+          cartItemDiv.id = `cart-item-${item.idMeal}`;
+          cartItemDiv.classList.add("meals-details", "container-fluid", "d-flex", "justify-content-center", "align-items-center");
+          cartItemDiv.innerHTML = `
+        
+              <div class="card mb-3" >
+                  <div class="row g-0">
+                      <div class="image col-md-4">
+                          <img src="${item.strMealThumb}" class="img-fluid rounded-start meal-pic" alt="...">
+                      </div>
+                      <div class="col-md-8">
+                          <div class="card-body">
+                              <h5 class="card-title" id="meal-title">${item.strMeal}</h5>
+                              <p class="card-text strCategory" id="meal-category">${item.strCategory}</p>
+                              <p class="card-text price" id="meal-price">$10</p>
+                              <div class="quantity">
+                                <button class="btn-outline-secondary" onclick="decreaseQuantity(${item.idMeal})">-</button>
                                 <span id="quantity-${item.idMeal}">1</span>
-                                <button class="btn btn-sm btn-outline-secondary" onclick="increaseQuantity(${item.idMeal})">+</button>
-                                </div>
-                                <button class="btn btn-sm btn-outline-danger" onclick="removeItem(${item.idMeal})">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            cartList.appendChild(cartItemDiv);
-        });
+                                <button class=" btn-outline-secondary" onclick="increaseQuantity(${item.idMeal})">+</button>
+                              </div>
+                              <br/>
+                              <button class=" delete" onclick="removeItem(${item.idMeal})">Delete</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          `;
+          cartList.appendChild(cartItemDiv);
+        }
+        const itemPrice = 10 * parseInt(item.quantity);
+        totalPrice += itemPrice;
+      });
     } else {
-        cartList.innerHTML = "Your cart is empty.";
+      cartList.innerHTML = "Your cart is empty.";
     }
-};
-
+  };
 const increaseQuantity = (itemId) => {
     const quantityElement = document.getElementById(`quantity-${itemId}`);
     let quantity = parseInt(quantityElement.textContent);
@@ -83,33 +94,19 @@ const removeItem = (itemId) => {
 
 displayCartItems();
 
-const addToCart = async () => {
-    const mealId = getMealParam("id");
-    const currentMeal = await generateCurrentMeal(mealId);
 
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-
-    const existingItem = cartItems.find(item => item.id === currentMeal.id);
-
-    if (existingItem) {
-        existingItem.quantity++;
-    } else {
-        currentMeal.quantity = 1;
-        cartItems.push(currentMeal);
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-
-    const orderBadge = document.getElementById("order-badge");
-    orderBadge.textContent = cartItems.length;
-
-    alert("Meal added to cart!");
-
-    displayCartItems();
-};
 const checkout = () => {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-   
+
+    const phone = localStorage.getItem("phone_number");
+
+    let message = "Your order details:\n";
+    cartItems.forEach(item => {
+        message += `${item.strMeal}: ${item.quantity}\n`;
+    });
+
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+
     clearCart();
 
     alert("Checkout successful!");
