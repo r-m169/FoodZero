@@ -37,15 +37,23 @@ initApp()
 const addToCart = async () => {
     const mealId = getMealParam("id");
     const currentMeal = await generateCurrentMeal(mealId);
-
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-
-    cartItems.push(currentMeal);
-
+    let isFound = false;
+  
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].idMeal === currentMeal.idMeal) {
+        cartItems[i].quantity++;
+        isFound = true;
+        break;
+      }
+    }
+  
+    if (!isFound) {
+      cartItems.push({...currentMeal,quantity:1});
+      const orderBadge = document.getElementById("order-badge");
+      orderBadge.textContent = cartItems.length;
+    }
+  
     localStorage.setItem("cart", JSON.stringify(cartItems));
-
-    const orderBadge = document.getElementById("order-badge");
-    orderBadge.textContent = cartItems.length;
-
-};
+  };
 

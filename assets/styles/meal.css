@@ -37,7 +37,8 @@
     background-color: var(--bg);
     border: none;
     font-weight: bold;
-    width: 350px;
+    /* width: 350px; */
+    max-width: 300px;
     border-radius: 8px;
     padding: 10px 20px;
 }
@@ -53,6 +54,3 @@ li{
     color: var(--brown);
 }
 
-.col-md-4 img{
-    height: 390px;
-}

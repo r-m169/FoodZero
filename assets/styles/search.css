@@ -178,7 +178,7 @@ h2{
 .filter-btn:hover{
     background-color: var(--brown);
     color: var(--white);
-    border: none;
+    /* border: none; */
 }
 #filters{
     display: flex;

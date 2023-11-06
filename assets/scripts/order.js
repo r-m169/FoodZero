@@ -2,51 +2,54 @@ const displayCartItems = () => {
     const cartItems = JSON.parse(localStorage.getItem("cart"));
     const cartList = document.getElementById("cart-items");
     let totalPrice = 0;
-
+  
     if (cartItems && cartItems.length > 0) {
       cartList.innerHTML = "";
   
       cartItems.forEach(item => {
         const existingCard = document.getElementById(`cart-item-${item.idMeal}`);
   
-        if (existingCard) {
-          const quantityElement = existingCard.querySelector(`#quantity-${item.idMeal}`);
-          quantityElement.textContent = parseInt(item.quantity); // Parse quantity as an integer
-        } else {
-          const cartItemDiv = document.createElement("div");
-          cartItemDiv.id = `cart-item-${item.idMeal}`;
-          cartItemDiv.classList.add("meals-details", "container-fluid", "d-flex", "justify-content-center", "align-items-center");
-          cartItemDiv.innerHTML = `
-        
-              <div class="card mb-3" >
-                  <div class="row g-0">
-                      <div class="image col-md-4">
-                          <img src="${item.strMealThumb}" class="img-fluid rounded-start meal-pic" alt="...">
-                      </div>
-                      <div class="col-md-8">
-                          <div class="card-body">
-                              <h5 class="card-title" id="meal-title">${item.strMeal}</h5>
-                              <p class="card-text strCategory" id="meal-category">${item.strCategory}</p>
-                              <p class="card-text price" id="meal-price">$10</p>
-                              <div class="quantity">
-                                <button class="btn-outline-secondary" onclick="decreaseQuantity(${item.idMeal})">-</button>
-                                <span id="quantity-${item.idMeal}">1</span>
-                                <button class=" btn-outline-secondary" onclick="increaseQuantity(${item.idMeal})">+</button>
-                              </div>
-                              <br/>
-                              <button class=" delete" onclick="removeItem(${item.idMeal})">Delete</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          `;
-          cartList.appendChild(cartItemDiv);
-        }
+        const cartItemDiv = document.createElement("div");
+        cartItemDiv.id = `cart-item-${item.idMeal}`;
+        cartItemDiv.classList.add("meals-details", "container-fluid", "d-flex", "justify-content-center", "align-items-center");
+        cartItemDiv.innerHTML = `
+    
+            <div class="card mb-3" >
+                <div class="row g-0">
+                    <div class="image col-md-4">
+                        <img src="${item.strMealThumb}" class="img-fluid rounded-start meal-pic" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title" id="meal-title">${item.strMeal}</h5>
+                            <p class="card-text strCategory" id="meal-category">${item.strCategory}</p>
+                            <p class="card-text price" id="meal-price">$${10 * item.quantity}</p>
+                            <div class="quantity">
+                              <button class="btn-outline-secondary" onclick="decreaseQuantity(${item.idMeal})">-</button>
+                              <span id="quantity-${item.idMeal}">${item.quantity}</span>
+                              <button class=" btn-outline-secondary" onclick="increaseQuantity(${item.idMeal})">+</button>
+                            </div>
+                            <br/>
+                            <button class="delete" onclick="removeItem(${item.idMeal})">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        cartList.appendChild(cartItemDiv);
+  
         const itemPrice = 10 * parseInt(item.quantity);
         totalPrice += itemPrice;
       });
+    //   const totalPriceElement = document.createElement("p");
+    //   totalPriceElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+    //   cartList.appendChild(totalPriceElement);
+  
     } else {
       cartList.innerHTML = "Your cart is empty.";
+      cartItems.style.display ="flex";
+      cartList.style.justifyContent = "center";
+      cartList.style.alignItems = "center";
     }
   };
 const increaseQuantity = (itemId) => {
@@ -56,7 +59,7 @@ const increaseQuantity = (itemId) => {
     quantityElement.textContent = quantity;
 
     const priceElement = document.getElementById(`cart-item-${itemId}`).querySelector(".price");
-    const price = 10; // Replace with the actual price of the item
+    const price = 10; 
     const totalPrice = price * quantity;
     priceElement.textContent = `$${totalPrice}`;
 };
@@ -64,17 +67,21 @@ const increaseQuantity = (itemId) => {
 const decreaseQuantity = (itemId) => {
     const quantityElement = document.getElementById(`quantity-${itemId}`);
     let quantity = parseInt(quantityElement.textContent);
-    if (quantity > 1) {
+    if (quantity >= 1) {
         quantity--;
         quantityElement.textContent = quantity;
 
-        const priceElement = document.getElementById(`cart-item-${itemId}`).querySelector(".price");
-        const price = 10; 
-        const totalPrice = price * quantity;
-        priceElement.textContent = `$${totalPrice}`;
-    } else {
-        removeItem(itemId);
-    }
+        // const priceElement = document.getElementById(`cart-item-${itemId}`).querySelector(".price");
+        // const price = 10; 
+        // const totalPrice = price * quantity;
+        // priceElement.textContent = `$${totalPrice}`;
+    }else if(quantity == 0){
+        alert('Are you sure that you want to remove this item ?');
+        removeItem(itemId)
+    } 
+    // else {
+    //     removeItem(itemId);
+    // }
 };
 
 const removeItem = (itemId) => {
@@ -94,23 +101,30 @@ const removeItem = (itemId) => {
 
 displayCartItems();
 
-
 const checkout = () => {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-
-    const phone = localStorage.getItem("phone_number");
-
+    const phone = '+96891787852';
     let message = "Your order details:\n";
+    let totalPrice = 0;
+
+    if(cartItems.length === 0){
+        alert("Your cart is empty");
+        return;
+    }
     cartItems.forEach(item => {
-        message += `${item.strMeal}: ${item.quantity}\n`;
+      message += `${item.strMeal}: ${item.quantity}\n`;
+      const itemPrice = 10 * parseInt(item.quantity);
+      totalPrice += itemPrice;
     });
-
+  
+    message += `\n Total price: $${totalPrice.toFixed(2)}`;
+  
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
-
+  
     clearCart();
-
+  
     alert("Checkout successful!");
-};
+  };
 
 const clearCart = () => {
     localStorage.removeItem("cart");

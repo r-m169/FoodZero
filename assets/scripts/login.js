@@ -4,10 +4,12 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
 
-    var storedEmail = localStorage.getItem('email');
-    var storedPassword = localStorage.getItem('password');
+    var users = JSON.parse(localStorage.getItem("users")) || [];
 
-    if (email === storedEmail && password === storedPassword) {
+    var findTheUser = users.find(function(user){
+        return user.email === email && user.password === password;
+    })
+    if (findTheUser) {
         window.location.href = '../pages/search.html';
         // alert("success")
     } else {
@@ -15,4 +17,5 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
         validationMessage.textContent = 'Invalid email or password. Please try again.';
         validationMessage.style.color = 'red';
     }
+   
 });

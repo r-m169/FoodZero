@@ -152,6 +152,9 @@ body{
   margin: 10px 0;
   position: relative;
 }
+.sign-up-now , .log-in-now{
+  color: var(--tenne-tawny);
+}
 .form-content .input-box input{
   height: 100%;
   width: 100%;

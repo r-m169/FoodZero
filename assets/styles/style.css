@@ -82,7 +82,7 @@
 .getStarted{
     display: inline-block;
     text-decoration: none;
-    padding: 14px 40px;
+    padding: 10px 40px;
     color: var(--white);
     /* background-image: linear-gradient(45deg,var(--brown)); */
     background-color: var(--brown);
