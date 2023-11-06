@@ -48,7 +48,9 @@ body{
   transform-origin: left;
   transform-style: preserve-3d;
 }
-
+.container #flip:checked ~ .cover{
+  transform: rotateY(-180deg);
+}
  .container .cover .front,
  .container .cover .back{
   position: absolute;
@@ -146,7 +148,6 @@ body{
 .sign-up-now , .log-in-now{
   color: var(--tenne-tawny);
 }
-
 .form-content .input-box input{
   height: 100%;
   width: 100%;
@@ -221,7 +222,6 @@ body{
 }
 @media (max-width: 730px) {
   .container .cover{
-    /* display: none; */
     display: flex;
     flex-direction: column;
   }
@@ -231,20 +231,16 @@ body{
   .form-content .login-form,
   .form-content .signup-form{
     width: 100%;
-    /* display: flex;
-    flex-direction: column; */
   }
   .form-content .signup-form{
     /* display: none; */
     display: flex;
     flex-direction: column;
   }
- 
+
   .container .cover{
     display: none;
   }
-  .cover .back{
-   display: none;
-  }
+
   
 }
