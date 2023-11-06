@@ -119,9 +119,13 @@ const checkout = () => {
     let totalPrice = 0;
 
     if (cartItems.length === 0) {
-        alert("Your cart is empty");
+        swal({
+            title: "Your cart is empty",
+            icon: "error",
+        });
         return;
     }
+
     cartItems.forEach(item => {
         message += `${item.strMeal}: ${item.quantity}\n`;
         const itemPrice = 10 * parseInt(item.quantity);
@@ -130,12 +134,27 @@ const checkout = () => {
 
     message += `\n Total price: $${totalPrice.toFixed(2)}`;
 
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
-
-    clearCart();
-
-    alert("Checkout successful!");
+    swal({
+        title: "Are you sure?",
+        text: "Your order will be sent to the system",
+        icon: "warning",
+        buttons: true,
+        dangerMode: false,
+    }).then((willSubmit) => {
+        if (willSubmit) {
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+            clearCart();
+            swal("Checkout successful!", {
+                icon: "success",
+            });
+        } else {
+            swal("Checkout canceled", {
+                icon: "info",
+            });
+        }
+    });
 };
+
 
 const clearCart = () => {
     localStorage.removeItem("cart");
