@@ -49,6 +49,7 @@
 }
 .meal-title{
    font-size: large;
+   color: var(--brown);
 }
 li{
     color: var(--brown);
