@@ -38,7 +38,7 @@
 }
 
 .image {
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 .image img {
@@ -114,9 +114,10 @@
 /* You can adjust the styles as needed to match your design preferences. */
 @media screen and (max-width: 360px) {
     .card {
-        width: 80%;
+        width: 100%;
         
     }
+    .c
     .btns{
         flex-direction: column;
     }
