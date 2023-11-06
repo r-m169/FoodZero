@@ -117,7 +117,10 @@
         width: 100%;
         
     }
-    .c
+    .image img {
+        max-width: 100px;
+        /* height: auto; */
+    }
     .btns{
         flex-direction: column;
     }
