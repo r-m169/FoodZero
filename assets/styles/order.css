@@ -112,9 +112,12 @@
 }
 
 /* You can adjust the styles as needed to match your design preferences. */
-@media screen {
+@media screen and (max-width: 360px) {
     .card {
         width: 80%;
         
+    }
+    .btns{
+        flex-direction: column;
     }
 }

@@ -35,25 +35,41 @@ const displayMealDetails = (meal = {}) => {
 
 initApp()
 const addToCart = async () => {
-    const mealId = getMealParam("id");
-    const currentMeal = await generateCurrentMeal(mealId);
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    let isFound = false;
-  
-    for (let i = 0; i < cartItems.length; i++) {
+  const mealId = getMealParam("id");
+  const currentMeal = await generateCurrentMeal(mealId);
+  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+  let isFound = false;
+
+  for (let i = 0; i < cartItems.length; i++) {
       if (cartItems[i].idMeal === currentMeal.idMeal) {
-        cartItems[i].quantity++;
-        isFound = true;
-        break;
+          cartItems[i].quantity++;
+          isFound = true;
+          
+  swal({
+    title: "Meal Added to Cart",
+    text: `${currentMeal.strMeal} has been added to your cart.`,
+    icon: "success",
+});
+          break;
       }
-    }
-  
-    if (!isFound) {
-      cartItems.push({...currentMeal,quantity:1});
+      
+  }
+
+  if (!isFound) {
+      cartItems.push({ ...currentMeal, quantity: 1 });
       const orderBadge = document.getElementById("order-badge");
       orderBadge.textContent = cartItems.length;
-    }
+      
+  swal({
+    title: "Meal Added to Cart",
+    text: `${currentMeal.strMeal} has been added to your cart.`,
+    icon: "success",
+});
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cartItems));
+
   
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-  };
+};
+
 
