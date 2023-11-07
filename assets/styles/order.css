@@ -110,7 +110,10 @@
     background-color: #d9534f;
     color: #fff;
 }
-
+.list{
+    text-decoration: none;
+    padding: 0px;
+}
 @media screen and (max-width: 360px) {
     .card {
         width: 100%;
@@ -122,9 +125,36 @@
     }
     .image img {
         max-width:100%;
-        /* height: auto; */
+        height: auto;
     }
     .btns{
         flex-direction: column;
+    }
+    .list{
+        /* padding: 520px; */
+    }
+}
+@media screen and (max-width: 1320px) {
+    .card {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        /* align-items: center;
+        justify-content: center; */
+    }
+    .list{
+        padding: 60px;
+    }
+}
+@media screen and (max-width: 1037px) {
+    .card {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        /* align-items: center;
+        justify-content: center; */
+    }
+    .list{
+        /* padding: 520px; */
     }
 }
